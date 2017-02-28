@@ -11,9 +11,18 @@ let win;
 
 function createWindow() {
 
-    const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize;
+    //const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize;
 
-    win = new BrowserWindow({width, height, darkTheme : true, titleBarStyle : "hidden"});
+    var screen = electron.screen;
+
+    var mainScreen = screen.getPrimaryDisplay();
+    var dimensions = mainScreen.size;
+
+    console.log("Screen Size -> " + dimensions.width + "x" + dimensions.height);
+
+    win = new BrowserWindow({width : dimensions.width , height : dimensions.height, darkTheme : true, titleBarStyle : "hidden"});
+
+    win.setMaximizable(true);
 
     win.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
