@@ -1,5 +1,31 @@
-<div>
+<div ng-controller="chatController">
     
-    CHAT
-    
+
+	<div class=".col-md-12">
+		<div id="chat-alert-success" class="alert alert-success hide--all">
+		  	<strong>Success!</strong> Connected!!
+		</div>
+	 </div>
+    <div id="connect_chat" class=".col-md-12">
+
+    	<div class="form-group">
+			<label for="usr">Nickname</label>
+			<input type="text" class="form-control" id="nick">
+		</div>
+		<button ng-click="connect()" type="button" class="btn btn-primary">Connect</button>
+
+		<li class="divider"></li>
+
+    </div>
+
+
+    <div class=".col-md-12">
+
+		<div class="form-group">
+		  	<input type="text" class="form-control" id="message">
+		</div>
+		<button style="align: right" type="button" class="btn btn-primary">Send</button>
+	 </div>
+
+
 </div>
