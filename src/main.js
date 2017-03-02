@@ -11,8 +11,6 @@ let win;
 
 function createWindow() {
 
-    //const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize;
-
     var screen = electron.screen;
 
     var mainScreen = screen.getPrimaryDisplay();
@@ -38,10 +36,6 @@ function createWindow() {
 }
 
 app.on('ready', createWindow);
-
-electron.app.on('browser-window-created',function(e,window) {
-    window.setMenu(null);
-});
 
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
