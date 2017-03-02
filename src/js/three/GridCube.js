@@ -1,3 +1,5 @@
+var THREE = require("three");
+
 function GridCube() {
 
     var container, camera, scene, controls, crt, renderer, stats;
@@ -55,8 +57,8 @@ function GridCube() {
             var renderer = new THREE.CanvasRenderer();
             renderer.setClearColor(0xf0f0f0);
             renderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT, false);
-            renderer.domElement.style.width = "100%";
-            renderer.domElement.style.height = "100%";
+            //renderer.domElement.style.width = "100%";
+            //renderer.domElement.style.height = "100%";
             return renderer;
         },
         controllers: function () {
@@ -101,14 +103,14 @@ function GridCube() {
         },
         init: function () {
 
-            container = document.getElementById("three_container");
+            container = $("three_container");
             camera = new THREE.PerspectiveCamera(60, ((CANVAS_WIDTH / CANVAS_HEIGHT)), 1, 2000);
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(60, ((CANVAS_WIDTH / CANVAS_HEIGHT)), 1, 2000);
 
             objects = this.grid(500, 50);
-            stats = this.status();
-            container.appendChild(stats.domElement);
+            //stats = this.status();
+            //container.appendChild(stats.domElement);
             renderer = this.loadRender();
             container.appendChild(renderer.domElement);
             crt = this.controllers();
