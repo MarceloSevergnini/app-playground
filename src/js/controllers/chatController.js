@@ -1,15 +1,18 @@
 var chatController = function ($scope, $http) {
 
 	var net = require('net');
+	var util = require('./js/modules/Util.js');
 
 	var createClient = function(){
 
 		var client = net.connect(3000, '127.0.0.1');
 		client.on('connect', function () {
 			client.write('Hello, I am the client!');
-			$("#chat-alert-success").removeClass("hide--all");
-			$("#connect_chat").addClass("hide--all");
-			
+			/*
+            util.hideComponent($("#chat-alert-success"));
+            util.showComponent($("#connect_chat"));
+            util.hideComponent($("#message_container"));
+            */
 		});
 		client.on('data', function (message) {
 			console.log(message.toString());
@@ -26,10 +29,14 @@ var chatController = function ($scope, $http) {
 
 	}
 
-
 	$scope.connect = function(){
 		createClient();
 	}
+	
+	$scope.sendMessage = function () {
+        var component = '<li>' + $("#message").val()+ '</li>'
+        $("#teste").append(component);
+    }
 	
 }
 
