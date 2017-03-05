@@ -1,18 +1,26 @@
 var chatController = function ($scope, $http) {
 
-	var net = require('net');
-	var util = require('./js/modules/Util.js');
+    let net = require('net');
 
-	var createClient = function(){
+    let setViewCtrl = function (alert, nickname, message) {
+        $scope.view = {
+            alert_block : alert,
+            nickname_block : nickname,
+            message_block : message
+        };
+    };
+
+    setViewCtrl(false, true, false);
+
+	let createClient = function(){
+
+        setViewCtrl(true, false, true);
 
 		var client = net.connect(3000, '127.0.0.1');
 		client.on('connect', function () {
 			client.write('Hello, I am the client!');
-			/*
-            util.hideComponent($("#chat-alert-success"));
-            util.showComponent($("#connect_chat"));
-            util.hideComponent($("#message_container"));
-            */
+
+
 		});
 		client.on('data', function (message) {
 			console.log(message.toString());
@@ -21,23 +29,26 @@ var chatController = function ($scope, $http) {
 			process.exit();
 		});
 		process.stdin.on('readable', function () {
-			var message = process.stdin.read();
+			let message = process.stdin.read();
 			if (!message) return;
 			message = message.toString().replace(/\n/, '');
 			client.write(message);
 		});
 
-	}
+	};
 
 	$scope.connect = function(){
 		createClient();
-	}
+	};
 	
 	$scope.sendMessage = function () {
-        var component = '<li>' + $("#message").val()+ '</li>'
-        $("#teste").append(component);
-    }
-	
+	    if($scope.inputMessage !== null && $scope.inputMessage !== undefined && $scope.inputMessage != ""){
+            $("#message_container").append('<li>' +  $scope.inputNickname  + " said: " + $scope.inputMessage + '</li>');
+            $scope.inputMessage = null;
+        }
+    };
+
 }
 
-module.controller('chatController', chatController);
+
+app.controller('chatController', chatController);

@@ -1,35 +1,35 @@
 <div ng-controller="chatController">
-    
 
-	<div class="col-md-12">
-		<div id="chat-alert-success" class="alert alert-success hide--all">
+	<div ng-show="view.alert_block" class="col-md-12">
+		<div id="chat-alert-success" class="alert alert-success">
 		  	<strong>Success!</strong> Connected!!
 		</div>
 	 </div>
-    <div id="connect_chat" class="col-md-12 hide--all">
+
+    <div ng-show="view.nickname_block" class="col-md-12">
 
     	<div class="form-group">
-			<label for="nickname">Nickname</label>
-			<input type="text" placeholder="Choose your nickname" class="form-control" id="nickname">
+			<label>Nickname</label>
+			<input type="text" placeholder="Choose your nickname" class="form-control" ng-model="inputNickname">
 		</div>
 		<button ng-click="connect()" type="button" class="btn btn-primary">Connect</button>
 
     </div>
 
-    <div id="message_container" class="hide--alls">
+    <div ng-show="view.message_block">
 
 		<div class="col-md-12">
 			<div id="message_fluid" class="well">
-				<ul id="teste" class="tabs">
+				<ul id="message_container" class="tabs">
 
 				</ul>
 			</div>
 			<div class="form-group">
-				<input type="text" placeholder="Write your message" class="form-control" id="message">
+				<input ng-keyup="$event.keyCode === 13 ? sendMessage() : null" ng-model="inputMessage"
+					   type="text" placeholder="Write your message" class="form-control" id="message">
 			</div>
 			<button ng-click="sendMessage()" type="button" class="btn btn-primary">Send</button>
 		</div>
 	 </div>
-
 
 </div>
