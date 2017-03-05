@@ -27,7 +27,7 @@
         
         <div class="container-fluid">
 
-            <div ng-controller="tabController as tabCtrl" id="navigate" class="container"> 
+            <div ng-controller="tabController as tabCtrl" id="navigate" class="container">
 
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">My Playground</a>
@@ -35,24 +35,24 @@
 
                 <ul  id="tabs" class="nav nav-tabs">
                     <li class="nav">
-                        <a ng-click="controll('home')"  href="#home" data-toggle="tab">Home</a>
+                        <a ng-click="setTabCtrl(true, false, false)"  href="#home" data-toggle="tab">Home</a>
                     </li>
                     <li class="nav active">
-                        <a ng-click="controll('chat')"  href="#chat" data-toggle="tab">Free Chat</a>
+                        <a ng-click="setTabCtrl(false, true, false)"  href="#chat" data-toggle="tab">Free Chat</a>
                     </li>
                     <li class="nav">
-                        <a ng-click="controll('threejs')"  href="#threejs" data-toggle="tab">Three Js</a>
+                        <a ng-click="setTabCtrl(false, false, true)"  href="#threejs" data-toggle="tab">Three Js</a>
                     </li>
                 </ul>
 
                 <div class="tab-content ">
-                    <div ng-hide="{{tabs.home}}" class="tab-pane fade" id="home">
+                    <div ng-show="tabs.home" class="tab-pane fade">
                         <h3>hello darkness my old friend :=)</h3>
                     </div>
-                    <div ng-hide="{{tabs.chat}}" class="tab-pane fade in active" id="chat">
+                    <div ng-show="tabs.chat" class="tab-pane fade in active">
                         <div ng-include="'partials/chat.html'"></div>
                     </div>
-                    <div ng-hide="{{tabs.threejs}}" class="tab-pane fade" id="threejs">
+                    <div ng-show="tabs.three" class="tab-pane fade">
                         <div ng-include="'partials/threeJs.html'"></div>
                     </div>
                 </div>
