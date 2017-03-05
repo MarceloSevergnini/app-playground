@@ -3,4 +3,4 @@ var threeController = function ($scope) {
 
 }
 
-module.controller('threeController', threeController);
+app.controller('threeController', threeController);
